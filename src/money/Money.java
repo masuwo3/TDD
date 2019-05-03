@@ -1,9 +1,11 @@
 package money;
 
-abstract class Money {
+class Money {
     protected int amount;
     protected String currency;
-    abstract Money times(int multiplier);
+    Money times(int multiplier){
+        return new Money(this.amount * multiplier, this.currency);
+    }
     Money(int amount, String currency){
         this.amount = amount;
         this.currency = currency;
@@ -15,7 +17,10 @@ abstract class Money {
     public boolean equals(Object object){
         Money money = (Money) object;
         return amount == money.amount
-                && getClass().equals(money.getClass());
+                && this.currency().equals(money.currency());
+    }
+    public String toString(){
+        return amount + " " + currency;
     }
     static Money dollar(int amount){
         return new Dollar(amount, "USD");
