@@ -28,8 +28,10 @@ class Money implements Expression{
     static Money franc(int amount){
         return new Money(amount, "CHF");
     }
-    Expression plus(Money added){
-        return new Money(this.amount + added.amount, this.currency);
+    Expression plus(Money addend){
+        return new Sum(this, addend);
     }
-
+    public Money reduce(String to){
+        return this;
+    }
 }
